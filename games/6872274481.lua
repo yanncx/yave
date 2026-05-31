@@ -922,7 +922,7 @@ run(function()
 
 	local function getproto(...)
 		local success, res = pcall(debug.getproto, ...)
-		return success and res or ''
+		return success and res or function() end
 	end
 	local remoteNames = {
 		AfkStatus = getproto(Knit.Controllers.AfkController.KnitStart, 1),
