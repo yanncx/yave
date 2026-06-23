@@ -1113,11 +1113,11 @@ run(function()
 		for _, side in {Vector3.new(0, 3, 0), Vector3.new(3, 0, 0), Vector3.new(0, 0, 3)} do
 			side = pos + side
 			local block = getPlacedBlock(side)
-			if block and (block:GetAttribute("PlacedByUserId") or 0) ~= 0 then
-				return false
+			if not block or (block:GetAttribute("PlacedByUserId") or 0) ~= 0 then
+				return true
 			end
 		end
-		return true
+		return false
 	end
 	local function calculatePath(target, blockpos, method, angle, wallcheck)
 		local visited, unvisited, distances, air, path = {}, {{0, blockpos}}, {[blockpos] = 0}, {}, {}
