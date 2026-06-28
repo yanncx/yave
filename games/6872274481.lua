@@ -3810,7 +3810,7 @@ run(function()
     
     local function getTurret(localPosition)
         for _, v in store.blocks do
-            if v.Name == 'camera_turret' and v:GetAttribute('PlacedByUserId') == lplr.UserId and (localPosition - v.Position).Magnitude <= 30 then
+            if v.Name == 'camera_turret' and v:GetAttribute('PlacedByUserId') == lplr.UserId and (localPosition - v.Position).Magnitude <= 500 then
                 return v
             end
         end
@@ -3830,7 +3830,7 @@ run(function()
     end
     
     InstantKill = vape.Categories.Blatant:CreateModule({
-        Name = 'Instant Kill',
+        Name = 'GenvInstaKill',
         Function = function(callback)
             if callback then
                 repeat task.wait() until store.matchState ~= 0 or not InstantKill.Enabled
@@ -3873,7 +3873,7 @@ run(function()
                                         bedwars.Client:Get('VulcanArtilleryMark'):CallServer(ent.Player)
                                     end)
                                 end
-                                delay = tick() + 2
+                                delay = tick() + 0.08
                             end
                         end
                     end
@@ -3902,8 +3902,8 @@ run(function()
     Range = InstantKill:CreateSlider({
         Name = 'Range',
         Min = 1,
-        Max = 100,
-        Default = 50,
+        Max = 500,
+        Default = 500,
         Suffix = function(val)
             return val <= 1 and 'stud' or 'studs'
         end
@@ -4040,7 +4040,7 @@ run(function()
     vape:Clean(part)
     
     Killaura = vape.Categories.Blatant:CreateModule({
-        Name = 'Killaura',
+        Name = 'GenvKa',
         Function = function(callback)
             if callback then
                 if Animation.Enabled then
